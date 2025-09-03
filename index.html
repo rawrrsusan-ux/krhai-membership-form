@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KRHAI Membership Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    h2, h3 { text-align: center; margin: 5px 0; }
+    p.center { text-align: center; }
+    .form-section { border: 1px solid #000; padding: 15px; margin-top: 20px; }
+    label { display: inline-block; width: 200px; font-weight: bold; }
+    input[type="text"], input[type="date"], input[type="email"], select {
+      width: 300px; padding: 5px; margin-bottom: 10px;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    table, th, td { border: 1px solid #000; }
+    th, td { padding: 5px; text-align: center; }
+    button { margin-top: 20px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h2>KINGSVILLE ROYALE HOMEOWNERS ASSOCIATION, INC.</h2>
+  <p class="center">The Clubhouse, New Castle Ave., Kingsville Royale<br>Brgy. San Juan, Antipolo City</p>
+  <h3>MEMBERSHIP REGISTRATION FORM</h3>
+
+  <form id="myForm">
+    <!-- PERSONAL INFO -->
+    <div class="form-section">
+      <h3>PERSONAL INFORMATION</h3>
+      <p><label>Surname:</label><input type="text" name="surname"></p>
+      <p><label>First Name:</label><input type="text" name="firstname"></p>
+      <p><label>Middle Name:</label><input type="text" name="middlename"></p>
+      <p><label>Date of Birth:</label><input type="date" name="dob"></p>
+      <p><label>Mobile Number:</label><input type="text" name="mobile"></p>
+      <p><label>Email Address:</label><input type="email" name="email"></p>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="form-section">
+      <h3>KR ADDRESS</h3>
+      <p><label>Lot/Block/Phase/Street:</label><input type="text" name="kr_address"></p>
+    </div>
+    <div class="form-section">
+      <h3>OTHER ADDRESS</h3>
+      <p><label>Full Address:</label><input type="text" name="other_address"></p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="form-section">
+      <h3>EDUCATIONAL BACKGROUND</h3>
+      <p><label>Attainment:</label>
+        <select name="education">
+          <option>Post-Graduate</option>
+          <option>College</option>
+          <option>High School</option>
+          <option>Elementary</option>
+        </select>
+      </p>
+      <p><label>Profession/Work:</label><input type="text" name="profession"></p>
+    </div>
+
+    <!-- PARENTS -->
+    <div class="form-section">
+      <h3>PARENTS & SPOUSE</h3>
+      <p><label>Father’s Name:</label><input type="text" name="father"></p>
+      <p><label>Mother’s Maiden Name:</label><input type="text" name="mother"></p>
+      <p><label>Spouse’s Maiden Name:</label><input type="text" name="spouse"></p>
+    </div>
+
+    <!-- CHILDREN -->
+    <div class="form-section">
+      <h3>CHILDREN</h3>
+      <table>
+        <tr><th>Name</th><th>Gender</th><th>Civil Status</th><th>Date of Birth</th></tr>
+        <tr><td><input type="text" name="child1"></td><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td></tr>
+        <tr><td><input type="text" name="child2"></td><td><input type="text"></td><td><input type="text"></td><td><input type="date"></td></tr>
+      </table>
+    </div>
+
+    <!-- OATH -->
+    <div class="form-section">
+      <h3>OATH OF MEMBERSHIP</h3>
+      <p>I, <input type="text" name="oath_name" style="width:200px;">, residing at 
+      <input type="text" name="oath_address" style="width:300px;">, do hereby swear...</p>
+    </div>
+
+    <!-- DATA PRIVACY -->
+    <div class="form-section">
+      <h3>DATA PRIVACY CONSENT</h3>
+      <p>I, <input type="text" name="privacy_name" style="width:200px;">, a resident of 
+      <input type="text" name="privacy_address" style="width:300px;">, hereby give my consent...</p>
+    </div>
+
+    <p style="text-align:center;">
+      <button type="submit">Submit</button>
+    </p>
+  </form>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch("https://script.google.com/macros/s/AKfycby4SDr0qw3ItuqTvsCnfPHnB-8H2RoTCLnPMURAYh8RtaH49cwQ4Q23uPP3ZsXnVcN1GA/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          surname: this.surname.value,
+          firstname: this.firstname.value,
+          middlename: this.middlename.value,
+          dob: this.dob.value,
+          mobile: this.mobile.value,
+          email: this.email.value,
+          kr_address: this.kr_address.value,
+          other_address: this.other_address.value,
+          education: this.education.value,
+          profession: this.profession.value,
+          father: this.father.value,
+          mother: this.mother.value,
+          spouse: this.spouse.value,
+          oath_name: this.oath_name.value,
+          oath_address: this.oath_address.value,
+          privacy_name: this.privacy_name.value,
+          privacy_address: this.privacy_address.value
+        })
+      }).then(res => alert("Submitted Successfully!"));
+    });
+  </script>
+</body>
+</html>
